@@ -2,6 +2,7 @@ package com.example.jovan.testapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,14 @@ public class Login extends AppCompatActivity {
     EditText mailText;
     EditText passText;
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    String loggedInStatus;
+
+    Intent intent;
+
+    public final static String EXTRA_TOKEN = "com.example.jovan.testapplication.TOKEN";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +45,18 @@ public class Login extends AppCompatActivity {
 
         mailText = (EditText) findViewById(R.id.editText);
         passText = (EditText) findViewById(R.id.editText2);
+
+        sharedPreferences = getSharedPreferences("loggedInToken",Context.MODE_PRIVATE);
+        loggedInStatus = sharedPreferences.getString("loggedInToken",null);
+
+        if(loggedInStatus != null){                                                           //checking if we loggedin (if we have saved token)
+            intent = new Intent(this, MainActivity.class);
+            intent.putExtra(EXTRA_TOKEN, sharedPreferences.getString("loggedInToken",""));
+            startActivity(intent);
+            finish();
+        }
+
+
     }
     public void logIn(View view) {
         if(isNetworkAvailable()){                                             //checking network connection
@@ -66,6 +87,15 @@ public class Login extends AppCompatActivity {
                         try {
                             resp = response.getString("token");
                             Log.i("Response",resp);
+
+                            sharedPreferences = getSharedPreferences("loggedInToken", Context.MODE_PRIVATE);    //Saving token
+                            editor = sharedPreferences.edit();
+                            editor.putString("loggedInToken", resp);
+                            editor.commit();
+                            intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra(EXTRA_TOKEN, resp);
+                            startActivity(intent);
+                            finish();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
