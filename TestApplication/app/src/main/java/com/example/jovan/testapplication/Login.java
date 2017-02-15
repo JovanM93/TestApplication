@@ -24,6 +24,22 @@ public class Login extends AppCompatActivity {
     }
     public void logIn(View view) {
         if(isNetworkAvailable()){
+            String mail = mailText.getText().toString().trim();
+            String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+            String pass = passText.getText().toString();
+
+            int errors = 0;
+             if (!mail.matches(emailPattern)) {
+                mailText.setError("Enter a valid email!");
+                errors++;
+            }if (pass.length() < 6) {
+                passText.setError("Password should be at least 6 characters long!");
+                errors++;
+            }
+            if(errors <1){
+
+
+            }
 
         }else Toast.makeText(getApplicationContext(), "No internet connection! Please turn on your internet.", Toast.LENGTH_LONG).show();
     }
