@@ -11,6 +11,7 @@ import android.widget.Toast;
 import static com.example.jovan.testapplication.Login.EXTRA_TOKEN;
 
 public class MainActivity extends AppCompatActivity {
+    String tokenParameter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Blog list");
 
         Bundle extras = getIntent().getExtras();
-        String tokenParameter = extras.getString(EXTRA_TOKEN);
+        tokenParameter = extras.getString(EXTRA_TOKEN);
         Log.i("Token",tokenParameter);
 
 
@@ -29,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
         }else Toast.makeText(getApplicationContext(), "No internet connection! Please turn on your internet.", Toast.LENGTH_LONG).show();
 
     }
+
+    private void gettingBlogList(){
+
+
+    }
+
 
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
