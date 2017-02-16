@@ -4,14 +4,14 @@ package com.example.jovan.testapplication;
 
 public class Blogs {
     private int id;
-    private String  titlee;
-    private String  imageUrle;
+    private String title;
+    private String imageUrl;
     private String  description;
 
-    public Blogs(int id, String titlee, String imageUrle, String description) {
+    public Blogs(int id, String title, String imageUrl, String description) {
         this.id = id;
-        this.titlee = titlee;
-        this.imageUrle = imageUrle;
+        this.title = title;
+        this.imageUrl = imageUrl;
         this.description = description;
     }
 
@@ -23,20 +23,20 @@ public class Blogs {
         this.id = id;
     }
 
-    public String getTitlee() {
-        return titlee;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitlee(String titlee) {
-        this.titlee = titlee;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getImageUrle() {
-        return imageUrle;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImageUrle(String imageUrle) {
-        this.imageUrle = imageUrle;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getDescription() {
