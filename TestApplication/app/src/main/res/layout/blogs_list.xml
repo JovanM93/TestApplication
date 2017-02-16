@@ -8,7 +8,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textStyle="normal|bold"
         android:textColor="@color/colorBlack"
         android:textAlignment="center" />
@@ -25,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        />
+        android:textAlignment="textStart"
+        android:textColor="?android:attr/textColorTertiary" />
 
 </LinearLayout>
