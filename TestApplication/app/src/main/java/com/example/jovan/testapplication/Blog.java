@@ -26,7 +26,5 @@ public class Blog extends AppCompatActivity {
 
         webView.loadData(blogContent, "text/html; charset=utf-8", "UTF-8");
 
-
-
     }
 }
