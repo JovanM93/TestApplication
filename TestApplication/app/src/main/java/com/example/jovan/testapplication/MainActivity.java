@@ -1,6 +1,7 @@
 package com.example.jovan.testapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Blogs> blogsArrayList;
     ListView lv;
+
+    public final static String EXTRA_CONTENT = "com.example.jovan.testapplication.CONTENT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +129,16 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 Log.i("Responsee", response.toString());
 
+                Intent intent = new Intent(getApplicationContext(), Blog.class);
+                try {
+                    intent.putExtra(EXTRA_CONTENT, response.getString("content"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(intent);
+
             }
+
 
         }, new Response.ErrorListener() {
             @Override
