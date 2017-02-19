@@ -20,7 +20,7 @@ public class Blog extends AppCompatActivity {
 
         WebView webView = (WebView) findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.setHorizontalScrollBarEnabled(true);
+        webView.setHorizontalScrollBarEnabled(true);                 //For some reason, scroll did not work, so i added ScrollView to my activity_blog.xml
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
 

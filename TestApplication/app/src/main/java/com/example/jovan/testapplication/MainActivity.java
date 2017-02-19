@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -102,6 +103,13 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                NetworkResponse response = error.networkResponse;
+                int responseCode = response.statusCode;
+                switch (responseCode) {
+                    case 401:
+                        Toast.makeText(getApplicationContext(), "Token is missing", Toast.LENGTH_SHORT).show();
+                        break;
+                }
 
                 error.printStackTrace();
             }
@@ -143,6 +151,17 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
+                NetworkResponse response = error.networkResponse;
+                int responseCode = response.statusCode;
+                switch (responseCode) {
+                    case 401:
+                        Toast.makeText(getApplicationContext(), "Token is missing", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 404:
+                        Toast.makeText(getApplicationContext(), "Wrong ID", Toast.LENGTH_SHORT).show();
+                        break;
+                }
 
                 error.printStackTrace();
             }
